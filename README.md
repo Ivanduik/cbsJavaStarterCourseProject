@@ -1,1 +1,1 @@
-# cbs Java Starter Course Project
+# CBS Java Starter Course Project
