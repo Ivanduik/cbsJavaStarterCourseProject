@@ -12,9 +12,9 @@ public class NumberOfDate {
         return inpDAte.nextLine();
     }
 
-    static Boolean isValidDate(String inDate) {
+    static Boolean isValidDate(String inDate,String valid) {
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat(valid);
             format.setLenient(false);
             format.parse(inDate);
             return true;
@@ -36,7 +36,7 @@ public class NumberOfDate {
         String date="";
         System.out.println("Input date, format DD/MM/YYYY:");
         date = inputString();
-        if (isValidDate(date)) System.out.printf("Sum numbers of Date= %d", dateSumNumber(date));
+        if (isValidDate(date,"dd/mm/yyyy")) System.out.printf("Sum numbers of Date= %d", dateSumNumber(date));
         else System.out.println("Error, date not correct.");
     }
 }
