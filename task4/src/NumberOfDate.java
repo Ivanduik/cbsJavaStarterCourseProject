@@ -1,40 +1,43 @@
-//Завдання 1
-//        Напишіть метод, який приймає число та повертає суму цифр цього числа.
+//Завдання 4
+//        Створіть програму, яка виводить у консоль число дати. Наприклад,
+//        на вхід 02/11/1995 = 0 + 2 + 1 + 1 + 1 + 9 + 9 + 5 = 28, на вихід = 28.
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class NumberOfDate {
-    static String inpStringDate() {
-        Scanner inp = new Scanner(System.in);
-        int dd = 0, mm = 0, yy = 0;
-        String in = inp.nextLine();
-        dd = Integer.parseInt(in.substring(0, 2));
-        mm = Integer.parseInt(in.substring(3, 5));
-        yy = Integer.parseInt(in.substring(6, 10));
-        if (dd >= 31 || mm >= 12) return "";
-        return in;
+    static String inputString() {
+        Scanner inpDAte = new Scanner(System.in);
+        return inpDAte.nextLine();
+    }
+
+    static Boolean isValidDate(String inDate) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            format.setLenient(false);
+            format.parse(inDate);
+            return true;
+        } catch (ParseException e) {
+            System.out.println(e.toString());
+            return false;
+        }
     }
 
     static int dateSumNumber(String date) {
-        int dateSum = 0, el;
-        int r = 0;
-        if (date.length() != 10) {
-            return 0;
-        }
-        for (int i = 0; i < date.length(); i++) {
-            el = Character.getNumericValue(date.charAt(i));
-            if ((el >= 0) && (el <= 9)) {
-                dateSum += el;
-            }
-        }
+        int dateSum = 0;
+        String strDate = date.replace("/", "");
+        for (int i = 0; i < strDate.length(); i++)
+            dateSum += Character.getNumericValue(strDate.charAt(i));
         return dateSum;
     }
-    public static void main(String[] arg) {
+
+    public static void main(String[] arg) throws ParseException {
         String date="";
         System.out.println("Input date, format DD/MM/YYYY:");
-        date=inpStringDate();
-        if(date.equals("") || dateSumNumber(date)==0) System.out.println("Error, date not correct.");
-        else         System.out.printf("Sum  numbers of Date= %d", dateSumNumber(date));
+        date = inputString();
+        if (isValidDate(date)) System.out.printf("Sum numbers of Date= %d", dateSumNumber(date));
+        else System.out.println("Error, date not correct.");
     }
 }
 

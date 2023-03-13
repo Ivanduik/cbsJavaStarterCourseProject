@@ -12,7 +12,6 @@ public class SumOfNumber {
         return inp.nextDouble();
     }
 
-
     static int sumNumber(double number) {
         String sumStr = "";
         int sum = 0;
@@ -24,14 +23,6 @@ public class SumOfNumber {
         return sum;
     }
 
-    static int sumNumber(int number) {
-        String sumStr = "";
-        int sum = 0;
-        sumStr = String.valueOf(number);
-        for (int i = 0; i < sumStr.length(); i++)
-            sum += Character.getNumericValue(sumStr.charAt(i));
-        return sum;
-    }
 
     public static void main(String[] arg) {
         double inNumber;
